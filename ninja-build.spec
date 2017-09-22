@@ -49,7 +49,7 @@ install -Dpm0644 misc/ninja-mode.el %{buildroot}%{_datadir}/emacs/site-lisp/ninj
 install -Dpm0644 misc/ninja.vim %{buildroot}%{_datadir}/vim/vimfiles/syntax/ninja.vim
 install -Dpm0644 %{S:1} %{buildroot}%{_datadir}/vim/vimfiles/ftdetect/ninja.vim
 install -Dpm0644 misc/zsh-completion %{buildroot}%{_datadir}/zsh/site-functions/_ninja
-install -Dpm0644 %{S:2} %{buildroot}%{rpmmacrodir}/macros.ninja
+install -Dpm0644 %{S:2} %{buildroot}/%{_sysconfdir}/rpm/macros.ninja
 
 ln -s ninja %{buildroot}%{_bindir}/ninja-build
 
@@ -67,7 +67,7 @@ ln -s ninja %{buildroot}%{_bindir}/ninja-build
 %{_datadir}/vim/vimfiles/ftdetect/ninja.vim
 # zsh does not have a -filesystem package
 %{_datadir}/zsh/
-%{rpmmacrodir}/macros.ninja
+%{_sysconfdir}/rpm/macros.ninja
 
 %changelog
 * Fri Sep 22 2017 Arkady L. Shane <ashejn@russianfedora.pro> - 1.7.2-2.R

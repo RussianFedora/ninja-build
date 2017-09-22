@@ -43,7 +43,7 @@ CFLAGS="%{optflags}" LDFLAGS="%{?__global_ldflags}" \
 
 %install
 # TODO: Install ninja_syntax.py?
-install -Dpm0755 ninja %{buildroot}%{_bindir}/ninja-build
+install -Dpm0755 ninja %{buildroot}%{_bindir}/ninja
 install -Dpm0644 misc/bash-completion %{buildroot}%{_datadir}/bash-completion/completions/ninja-build
 install -Dpm0644 misc/ninja-mode.el %{buildroot}%{_datadir}/emacs/site-lisp/ninja-mode.el
 install -Dpm0644 misc/ninja.vim %{buildroot}%{_datadir}/vim/vimfiles/syntax/ninja.vim
@@ -51,12 +51,15 @@ install -Dpm0644 %{S:1} %{buildroot}%{_datadir}/vim/vimfiles/ftdetect/ninja.vim
 install -Dpm0644 misc/zsh-completion %{buildroot}%{_datadir}/zsh/site-functions/_ninja
 install -Dpm0644 %{S:2} %{buildroot}%{rpmmacrodir}/macros.ninja
 
+ln -s ninja %{buildroot}%{_bindir}/ninja-build
+
 %check
 ./ninja_test
 
 %files
 %license COPYING
 %doc HACKING.md README doc/manual.html
+%{_bindir}/ninja
 %{_bindir}/ninja-build
 %{_datadir}/bash-completion/completions/ninja-build
 %{_datadir}/emacs/site-lisp/ninja-mode.el
@@ -67,6 +70,9 @@ install -Dpm0644 %{S:2} %{buildroot}%{rpmmacrodir}/macros.ninja
 %{rpmmacrodir}/macros.ninja
 
 %changelog
+* Fri Sep 22 2017 Arkady L. Shane <ashejn@russianfedora.pro> - 1.7.2-2.R
+- added symlink for /usr/bin/ninja
+
 * Sat Dec 03 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 1.7.2-2
 - Add EPEL hacks
 
